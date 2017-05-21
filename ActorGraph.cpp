@@ -12,17 +12,28 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 #include "ActorGraph.h"
 
 using namespace std;
 
-ActorGraph::ActorGraph(void) {}
+struct Vertex
+{
+  unordered_set<string> movie;
+  vector<std::pair<string,Vertex*>> adj; 
+  string name;
+};
 
-bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) {
+ActorGraph::ActorGraph(void) {
+  vector<Vertex*> vs;
+}
+
+ActorGraph* ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) {
     // Initialize the file stream
     ifstream infile(in_filename);
-
+    ActorGraph * graph = new Actorgraph(); 
     bool have_header = false;
+    int i = 0;
   
     // keep reading lines until the end of file is reached
     while (infile) {
@@ -56,9 +67,27 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) 
 
         string actor_name(record[0]);
         string movie_title(record[1]);
-        int movie_year = stoi(record[2]);
-    
-        // we have an actor/movie relationship, now what?
+        string movie_year(record[2]);
+
+        if(graph->vs[i] && graph->vs[i]->name!=actor_name) i++;
+        // we have an actor/movie relationship, now what
+        if(!graph->vs[i]){
+          vertex * vp = new vertex;
+          vp->name = actor_name;
+          string temp;
+          temp.append(movie_title);
+          temp.append('\t');
+          temp.append(movie_year);
+          vp->movie.inset(temp);
+          vs[i] = vp;
+        }
+        if(graph->vs[i]->name == actor_name){
+          string temp;
+          temp.append(movie_title);
+          temp.append('\t');
+          temp.append(movie_year);
+          vs[i]->vp->movie.insert(temp);
+        }
     }
 
     if (!infile.eof()) {
@@ -66,6 +95,9 @@ bool ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) 
         return false;
     }
     infile.close();
+    for(int j=0;j<graph->vs.size();j++){
+        
+    }
 
-    return true;
+    return graph;
 }
