@@ -1,7 +1,7 @@
 # A simple makefile for CSE 100 PA4
 
 CC=g++
-CXXFLAGS=-std=c++11
+CXXFLAGS=-std=c++11 -g -Wall -gdwarf-3
 LDFLAGS=
 
 # if passed "type=opt" at command-line, compile with "-O3" flag (otherwise use "-g" for debugging)
@@ -28,8 +28,9 @@ pathfinder: ActorGraph.o
 
 # Note: you do not have to include a *.cpp file if it aleady has a paired *.h file that is already included with class/method headers
 
-ActorGraph.o: UnionFind.hpp Movie.h ActorNode.h ActorEdge.h ActorGraph.h
+#ActorGraph.o: UnionFind.hpp Movie.h ActorNode.h ActorEdge.h ActorGraph.h
 
+ActorGraph.o: ActorGraph.h
 
 clean:
 	rm -f pathfinder *.o core*

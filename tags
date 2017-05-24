@@ -1,0 +1,28 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACTORGRAPH_H	ActorGraph.h	11;"	d
+ACTORNODE_H	ActorNode.h	2;"	d
+ActorGraph	ActorGraph.cpp	/^ActorGraph::ActorGraph(unordered_map<string, Vertex*> vs, unordered_map<string, vector<string>> moviemap) {$/;"	f	class:ActorGraph
+ActorGraph	ActorGraph.h	/^class ActorGraph {$/;"	c
+ActorNode	ActorNode.h	/^class ActorNode{$/;"	c
+CC	Makefile	/^CC=g++$/;"	m
+CXXFLAGS	Makefile	/^CXXFLAGS=-std=c++11 -g -Wall -gdwarf-3$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=$/;"	m
+Vertex	ActorGraph.h	/^struct Vertex$/;"	s
+addEdge	ActorGraph.cpp	/^void ActorGraph::addEdge() {$/;"	f	class:ActorGraph
+adj	ActorGraph.h	/^  vector<pair<string,Vertex*>> adj; $/;"	m	struct:Vertex
+bfs	ActorGraph.cpp	/^stack<Vertex*> ActorGraph::bfs(Vertex* s, Vertex* d){$/;"	f	class:ActorGraph
+loadFromFile	ActorGraph.cpp	/^void ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) {$/;"	f	class:ActorGraph
+main	pathfinder.cpp	/^int main(int argc, char* argv[]){$/;"	f
+movie	ActorGraph.h	/^  unordered_set<string> movie;$/;"	m	struct:Vertex
+movie	ActorNode.h	/^  unordered_set<std::string> movie;$/;"	m	class:ActorNode
+moviemap	ActorGraph.h	/^    unordered_map<string, vector<string>> moviemap; $/;"	m	class:ActorGraph
+name	ActorGraph.h	/^  string name;$/;"	m	struct:Vertex
+name	ActorNode.h	/^  std::string name;$/;"	m	class:ActorNode
+prev	ActorGraph.h	/^  Vertex * prev = NULL;$/;"	m	struct:Vertex
+visited	ActorGraph.h	/^  bool visited = false;$/;"	m	struct:Vertex
+vs	ActorGraph.h	/^    unordered_map<string, Vertex*> vs;$/;"	m	class:ActorGraph
