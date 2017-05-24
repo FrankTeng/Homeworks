@@ -100,10 +100,9 @@ void ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) 
       temp.append("%");
       temp.append(movie_year);
       vp->movie.insert(temp);
+      resetVs.push_back(vp);
       pair<string, Vertex*> pr  = make_pair(actor_name,vp);
       vs.insert(pr);
-      resetVs.push_back(vp);
-      cout<<resetVs.size()<<endl;
     }
 
     else if(ac != vs.end()){  
@@ -124,7 +123,6 @@ void ActorGraph::loadFromFile(const char* in_filename, bool use_weighted_edges) 
       vp->movie.insert(temp);
       pair<string, Vertex*> pr  = make_pair(actor_name,vp);
       vs.insert(pr);
-      resetVs.push_back(vp);
      // cout<<vp->name<<endl;
     }
     //cout<<vs.size()<<endl; 
@@ -160,6 +158,8 @@ void ActorGraph::addEdge() {
   }*/
   for(auto i = vs.begin(); i != vs.end(); i++)
   {
+    resetVs.push_back(i->second);
+   
     for(const auto& elem: i->second->movie)
     {
       auto it = moviemap.find(elem);
@@ -176,17 +176,18 @@ void ActorGraph::addEdge() {
 }
 
 stack<Vertex*> ActorGraph::bfs(Vertex* s, Vertex* d){
-  /*
+  
   for(unsigned int j=0;j<resetVs.size();j++){
-    cout<<j<<endl;
     resetVs[j]->visited = false;
-  }*/
+    resetVs[j]->prev = NULL;
+  }
   queue<Vertex*> toExplore;
   stack<Vertex*> result;
   Vertex* temp;
   s->visited = true;
   toExplore.push(s);
-  while(!toExplore.empty()){  
+  while(!toExplore.empty()){
+    
     Vertex * curr = toExplore.front();
     toExplore.pop();
     for(unsigned int i=0;i<curr->adj.size();i++){
@@ -197,6 +198,7 @@ stack<Vertex*> ActorGraph::bfs(Vertex* s, Vertex* d){
 
         if (temp->name == d->name) {
           while(temp->prev){
+            cout<<temp->prev->name<<endl;
             //temp->visited = false;
             result.push(temp);
         

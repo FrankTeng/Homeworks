@@ -50,7 +50,8 @@ int main(int argc, char* argv[]){
     auto de = graph.vs.find(toFind[1]);
     sour = so->second;
     des = de->second;
-    
+    cout<<sour->name<<endl;
+    cout<<des->name<<endl;
     stack<Vertex *> st = graph.bfs(sour, des);
     
 
