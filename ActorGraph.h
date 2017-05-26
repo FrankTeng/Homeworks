@@ -1,10 +1,10 @@
 /*
  * ActorGraph.h
- * Author: <YOUR NAME HERE>
- * Date:   <DATE HERE>
+ * Author: Yue Teng; Liu Yang
+ * Date:   05/22/2017
+ * Assignment#: PA4
+ * Overview: the header of Actorgraph.
  *
- * This file is meant to exist as a container for starter code that you can use to read the input file format
- * defined in movie_casts.tsv. Feel free to modify any/all aspects as you wish.
  */
 
 #ifndef ACTORGRAPH_H
@@ -26,6 +26,7 @@
 // Maybe include some data structures here
 
 using namespace std;
+// Declare the Vertex(a kind of node)
 struct Vertex
 {
   unordered_set<string> movie;
@@ -59,7 +60,7 @@ class ActorGraph {
     void loadFromFile(const char* in_filename, bool use_weighted_edges);
     void addEdge();
     stack<Vertex*> bfs(Vertex* s, Vertex* d);
-
+//    ~ActorGraph();
 
 
 };

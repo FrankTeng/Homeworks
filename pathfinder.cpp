@@ -19,11 +19,12 @@ int main(int argc, char* argv[]){
   unordered_map<string, Vertex*> v;
   unordered_map<string, vector<string>> m;
   vector<Vertex*> resetVs;
-
+  // Initialize the graph
   ActorGraph graph(v, m, resetVs);
   graph.loadFromFile(argv[1],argv[2]);
   graph.addEdge();
  
+  out << "(actor)--[movie#@year]-->(actor)--..." << endl;
 
   while(pair){
     string s;
@@ -44,40 +45,28 @@ int main(int argc, char* argv[]){
     }
     string source(toFind[0]);
     string dest(toFind[1]);
-   
+    // Load the input file
 
+    // Get the position of the two vertex in our graph
     auto so = graph.vs.find(toFind[0]);
     auto de = graph.vs.find(toFind[1]);
     sour = so->second;
-    des = de->second;
-    cout<<sour->name<<endl;
-    cout<<des->name<<endl;
+    des = de->second;// Two vertex
+    // find their relationships
     stack<Vertex *> st = graph.bfs(sour, des);
     
-
+    // Print them out into the output file in the format.
     Vertex * temp;
     Vertex * next;
     string m;
     while (1) {
-     
-      
       temp = st.top();
-     
       st.pop();
       if (st.empty()) {
-      
         break;
       }
       next = st.top();  
       for (auto it = temp->movie.begin(); it != temp->movie.end(); it++) {
-        /*
-        for (auto itnext = next->movie.begin(); itnext != next->movie.end(); itnext++) {
-          if (*it == *itnext){
-            m = *it;
-            break;
-          }         
-        }
-        */
         auto itnext = next->movie.find(*it);
         if(itnext!=next->movie.end()) m = *it;
       }
@@ -89,5 +78,5 @@ int main(int argc, char* argv[]){
     out << "(" << next->name << ")" << endl;
 
   }
-return 0;
+
 }
