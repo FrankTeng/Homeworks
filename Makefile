@@ -2,7 +2,7 @@
 
 CC=g++
 CXXFLAGS=-std=c++11 -g -Wall -gdwarf-3
-LDFLAGS=
+LDFLAGS=-o3
 
 # if passed "type=opt" at command-line, compile with "-O3" flag (otherwise use "-g" for debugging)
 
@@ -14,14 +14,14 @@ else
     LDFLAGS += -g
 endif
 
-all: pathfinder
+all: pathfinder actorconnections
 
 
 
 # include what ever source code *.h files pathfinder relies on (these are merely the ones that were used in the solution)
 
 pathfinder: ActorGraph.o
-
+actorconnections: ActorGraph.o
 
 
 # include what ever source code *.h files ActorGraph relies on (these are merely the ones that were used in the solution)
@@ -33,5 +33,5 @@ pathfinder: ActorGraph.o
 ActorGraph.o: ActorGraph.h
 
 clean:
-	rm -f pathfinder *.o core*
+	rm -f actorconnections pathfinder *.o core*
 

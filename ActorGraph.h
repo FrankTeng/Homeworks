@@ -22,6 +22,7 @@
 #include <unordered_set>
 #include <utility>
 #include <limits>
+#include <tuple>
 
 // Maybe include some data structures here
 
@@ -30,21 +31,34 @@ using namespace std;
 struct Vertex
 {
   unordered_set<string> movie;
-  vector<pair<string,Vertex*>> adj; 
+  vector<tuple<string,Vertex*,int>> adj; 
   string name;
   bool visited = false;
-  int a = numeric_limits<int>::max();
+  int dist = numeric_limits<int>::max();
   Vertex * prev = NULL;
 
 };
+
+class Cpr {
+public:
+    bool operator()(Vertex*& l, Vertex*& r) const {
+        return l->dist > r->dist;
+    }
+};
+
 class ActorGraph {
     // Maybe add class data structure(s) here
 
   public:
+    int eyear;
     vector<Vertex*> resetVs;
+
     unordered_map<string, Vertex*> vs;
     unordered_map<string, vector<string>> moviemap; 
     ActorGraph(unordered_map<string, Vertex*>, unordered_map<string, vector<string>>,vector<Vertex*>);
+
+   
+    ~ActorGraph();
 
     // Maybe add some more methods here
 
@@ -58,8 +72,13 @@ class ActorGraph {
      * return true if file was loaded sucessfully, false otherwise
      */
     void loadFromFile(const char* in_filename, bool use_weighted_edges);
-    void addEdge();
+    void addEdge(char ch);
+    void addYearEdge(unsigned int year);
+  //  void addEdgeCon(unsigned int year);
     stack<Vertex*> bfs(Vertex* s, Vertex* d);
+    stack<Vertex*> Dijkstra(Vertex* s,Vertex* d);
+    bool bfsYear(Vertex* s, Vertex* d);
+    void resetEdge();
 //    ~ActorGraph();
 
 
