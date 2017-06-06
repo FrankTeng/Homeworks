@@ -21,7 +21,7 @@ all: pathfinder actorconnections
 # include what ever source code *.h files pathfinder relies on (these are merely the ones that were used in the solution)
 
 pathfinder: ActorGraph.o
-actorconnections: ActorGraph.o
+actorconnections: ActorGraph.o DisjointSet.o Movie.o DjNode.o
 
 
 # include what ever source code *.h files ActorGraph relies on (these are merely the ones that were used in the solution)
@@ -31,6 +31,9 @@ actorconnections: ActorGraph.o
 #ActorGraph.o: UnionFind.hpp Movie.h ActorNode.h ActorEdge.h ActorGraph.h
 
 ActorGraph.o: ActorGraph.h
+DisjointSet.o: Movie.o DjNode.o DisjointSet.h
+DjNode.o: DjNode.h
+Movie.o: Movie.h
 
 clean:
 	rm -f actorconnections pathfinder *.o core*

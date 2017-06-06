@@ -73,12 +73,12 @@ class ActorGraph {
      */
     void loadFromFile(const char* in_filename, bool use_weighted_edges);
     void addEdge(char ch);
-    void addYearEdge(unsigned int year);
+ //   void addYearEdge(unsigned int year);
   //  void addEdgeCon(unsigned int year);
     stack<Vertex*> bfs(Vertex* s, Vertex* d);
     stack<Vertex*> Dijkstra(Vertex* s,Vertex* d);
-    bool bfsYear(Vertex* s, Vertex* d);
-    void resetEdge();
+    bool bfsYear(Vertex* s, Vertex* d, unsigned int weight);
+ //   void resetEdge();
 //    ~ActorGraph();
 
 
